@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:gravity="center_horizontal"
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:background="@drawable/border_radius"
+            android:layout_width="30dp"
+            android:layout_height="5dp"/>
+
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_add_fav"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu"
+        android:layout_below="@id/title"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/btn1"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_add_fav"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:drawableLeft="@drawable/ic_baseline_favorite_24"
+            android:drawableTint="@color/black"
+            android:drawablePadding="6dp"
+            android:padding="10dp"
+            android:background="@drawable/stroke"
+            />
+
+        <TextView
+            android:id="@+id/btn2"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:drawableLeft="@drawable/ic_baseline_delete_24"
+            android:drawableTint="@color/black"
+            android:drawablePadding="6dp"
+            android:padding="10dp"
+            android:background="@drawable/stroke"
+            android:layout_marginBottom="16dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

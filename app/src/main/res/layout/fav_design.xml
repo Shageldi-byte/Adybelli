@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginEnd="12dp"
+    android:layout_marginTop="12dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="6dp"
+        android:background="@drawable/stroke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="218dp" />
+
+        <ImageView
+            android:id="@+id/fav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/cyrcle"
+            android:padding="6dp"
+            android:src="@drawable/ic_baseline_clear_24"
+            app:tint="@color/black" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/size"
+            android:layout_marginEnd="6dp"
+            android:singleLine="true"
+            android:background="@drawable/stroke"
+            android:layout_weight="1"
+            android:text="@string/size__"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:drawablePadding="-6dp"
+            android:drawableTint="@color/inactive"
+            android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:textStyle="normal"
+            android:layout_marginTop="1dp"
+            android:layout_height="30dp"/>
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/add_to_card"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/orrange_stroke"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:singleLine="true"
+            android:textAllCaps="false"
+            android:text="@string/add_to_kard"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swarm Siyah erekek bot"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:maxLines="2"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/old_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="974 TMT"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/inactive"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="974.20 TMT"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="true"
+            style="@style/CustomRatingBar"
+            />
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(740)"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

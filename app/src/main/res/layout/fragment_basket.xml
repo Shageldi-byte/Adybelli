@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Fragment.Basket">
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_above="@+id/bottomMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
+
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/my_basket"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_baseline_search_24"
+                    app:tint="@color/black" />
+
+                <include
+                    android:id="@+id/line3"
+                    layout="@layout/single_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/title"
+                    android:layout_marginTop="16dp" />
+            </RelativeLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress"
+                android:layout_below="@id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true" />
+
+            <LinearLayout
+                android:id="@+id/con"
+                android:layout_below="@id/progress"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never" />
+
+
+
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_below="@id/con"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+
+                <TextView
+                    android:id="@+id/alsoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/also"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/also_rec"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/trbg"
+        android:visibility="gone"
+        android:background="@color/transparentBlack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/cost_dialog"
+        android:layout_above="@id/bottomMenu"
+        layout="@layout/cost_dialog"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <RelativeLayout
+        android:elevation="12dp"
+        android:id="@+id/bottomMenu"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            app:tint="@color/black" />
+
+
+        <LinearLayout
+            android:id="@+id/costs"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginLeft="6dp"
+            android:layout_toRightOf="@id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/costTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_cost"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/sumOfCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 TMT"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/acceptBtn"
+            android:layout_width="match_parent"
+            android:background="@drawable/orange_hover"
+            android:text="@string/accept_order"
+            android:textAllCaps="false"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/costs"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/error_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <RelativeLayout
+        android:id="@+id/disable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="57dp"
+        android:background="#8DFFFFFF"
+        />
+
+
+</RelativeLayout>

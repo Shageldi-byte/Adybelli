@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "466320794019",
+    "project_id": "adybelli-project",
+    "storage_bucket": "adybelli-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466320794019:android:e84b5af413a1f46e0fba16",
+        "android_client_info": {
+          "package_name": "com.adybelli.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466320794019-a46qiai3aac7p6bc5i6r8o6cgjmmsraf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXcaHvywb5vyabQCcerPuJ2R43s1FdLJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466320794019-a46qiai3aac7p6bc5i6r8o6cgjmmsraf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "466320794019-3db7biis9esph5ll1oe9uhm2hmp7odfa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.adybelli"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

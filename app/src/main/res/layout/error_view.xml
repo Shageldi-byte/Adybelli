@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/errorContainer"
+    android:gravity="center"
+    android:visibility="gone"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/errorImage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_baseline_not_interested_24"
+         />
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:id="@+id/errorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noInternet"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noInternet"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        />
+
+    <Button
+        android:id="@+id/errorButton"
+        android:layout_marginTop="12dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/continueValue"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@color/colorAccent"
+        />
+
+</LinearLayout>

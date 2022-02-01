@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/yourLayout"
+    android:animateLayoutChanges="true"
+    tools:context=".Activity.MainActivity">
+
+    <FrameLayout
+        android:layout_above="@id/bottomNavigationView"
+        android:id="@+id/content"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary"
+        app:menu="@menu/bottom_navigation_menu"
+        app:itemRippleColor="@color/colorPrimary"
+        android:visibility="gone"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="20dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+        <ImageView
+            android:id="@+id/splash_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/splash_first"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

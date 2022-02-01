@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Fragment.Search">
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/category" />
+
+        <TextView
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@id/title"
+            android:background="@drawable/edit_text_bg"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:drawablePadding="12dp"
+            android:drawableTint="@color/black"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="@string/find"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="16sp" />
+
+
+    <include
+        android:id="@+id/line"
+        android:layout_below="@id/searchBar"
+        layout="@layout/single_line"
+        android:layout_height="0.5dp"
+        android:layout_width="match_parent"/>
+
+
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/catRec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec"
+            android:layout_toRightOf="@id/catRec"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    </RelativeLayout>
+
+    <include
+        layout="@layout/error_view"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="rightColors">
+        <item>@color/colorAccent</item>
+        <item>@color/red</item>
+    </integer-array>
+
+    <integer-array name="leftColors">
+        <item>@color/colorAccent</item>
+        <item>@color/red</item>
+    </integer-array>
+
+    <integer-array name="rightDrawables">
+        <item>@drawable/edit_white</item>
+        <item>@drawable/trash_white</item>
+    </integer-array>
+
+    <integer-array name="leftDrawables">
+        <item>@drawable/edit_white</item>
+        <item>@drawable/trash_white</item>
+    </integer-array>
+
+    <string-array name="leftTexts">
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
+
+    <string-array name="rightTexts">
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
+
+</resources>

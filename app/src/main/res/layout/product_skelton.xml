@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="200dp"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="6dp"
+        android:background="@color/skeleton"
+        android:layout_width="155dp"
+        android:layout_height="218dp">
+
+
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/skeleton"
+        android:background="@color/skeleton"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swarm Siyah erekek bot"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/skeleton"
+        android:background="@color/skeleton"
+        android:textSize="12sp"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/old_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="974 TMT"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/skeleton"
+            android:background="@color/skeleton"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="974.20 TMT"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/skeleton"
+            android:background="@color/skeleton"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="true"
+            android:visibility="gone"
+            style="@style/CustomRatingBar"
+            />
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(740)"
+            android:visibility="gone"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

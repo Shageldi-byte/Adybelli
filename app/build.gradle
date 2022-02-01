@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+
+}
+
+android {
+    signingConfigs {
+        release  {
+            storeFile file(MYAPP_UPLOAD_STORE_FILE)
+            storePassword 'QwertyWeb123'
+            keyAlias 'upload'
+            keyPassword 'QwertyWeb123'
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+    buildFeatures {
+        viewBinding = true
+    }
+    defaultConfig {
+        applicationId "com.adybelli.android"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 11
+        versionName "1"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+//            debuggable  false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-firestore:23.0.3'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.ethanhua:skeleton:1.1.2'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation "com.github.skydoves:powerspinner:1.1.8"
+    implementation 'com.github.varunest:sparkbutton:1.0.6'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.jsibbold:zoomage:1.3.1'
+    implementation 'com.github.alexandrius:accordion-swipe-layout:0.5.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.kaopiz:kprogresshud:1.0.2'
+    implementation 'com.zhy.base:fileprovider:1.0.0'
+    implementation 'com.alirezaahmadi:progress-button:1.1.2'
+    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
+    implementation 'com.brucetoo.pickview:library:1.2.3'
+
+    implementation "com.jakewharton:butterknife:10.1.0"
+    implementation 'com.itextpdf:itextg:5.5.10'
+    implementation 'org.jsoup:jsoup:1.14.3'
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    // Declare the dependencies for the In-App Messaging and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-inappmessaging-display:20.1.0'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.github.pramonow:android-endlessrecyclerview:1.0.0'
+    implementation 'com.github.RaviKoradiya:ZoomableImageView:1.1.1'
+    implementation 'com.github.yasevich:endless-recycler-view:1.1.0'
+    
+
+}

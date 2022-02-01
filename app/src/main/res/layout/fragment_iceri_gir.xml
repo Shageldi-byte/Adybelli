@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".Fragment.IceriGir">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/login_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/to_receive_code"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_below="@id/login_desc"
+        android:id="@+id/phone"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:prefixText="+9936"
+        app:prefixTextAppearance="@style/prefix"
+        android:hint="@string/phone_number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phone_input"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text=""
+            android:maxLength="7"
+            android:textColor="@color/black"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/termsCon"
+        android:layout_below="@id/phone"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="14sp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="16dp"
+            android:text="@string/t1"
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="2dp"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@color/colorAccent"
+                android:text="@string/t2"
+                android:id="@+id/t2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:text="@string/t3"
+                android:id="@+id/t3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/acceptBtn"
+        android:layout_below="@id/termsCon"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/tassykla"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+
+        />
+
+        <include
+            android:layout_below="@+id/acceptBtn"
+            layout="@layout/login_bottom_view"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content" />
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Fragment.Products"
+    tools:openDrawer="end">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_weight="90"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/appBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+
+                            <LinearLayout
+                                android:background="@color/white"
+                                app:layout_collapseMode="pin"
+                                app:layout_scrollFlags="scroll|snap"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <include
+                                    android:id="@+id/toolbar2"
+                                    layout="@layout/adybelli_toolbar" />
+
+                                <include
+                                    android:id="@+id/line1"
+                                    layout="@layout/single_line"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                     />
+                            </LinearLayout>
+
+
+
+                        <com.google.android.material.appbar.CollapsingToolbarLayout
+                            android:id="@+id/collapsing_toolbar_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_scrollFlags="scroll|enterAlways">
+
+                            <LinearLayout
+                                android:background="@color/white"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:id="@+id/linear2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/line1"
+                                    android:orientation="horizontal">
+
+                                    <Button
+                                        android:id="@+id/sort"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/white_btn"
+                                        android:text="@string/sort"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp" />
+
+                                    <Button
+                                        android:id="@+id/filter"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/white_btn"
+                                        android:text="@string/filters"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp" />
+
+                                </LinearLayout>
+
+                                <include
+                                    android:id="@+id/line3"
+                                    layout="@layout/single_line"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:layout_below="@id/linear2" />
+
+                                <LinearLayout
+                                    android:id="@+id/onBack"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:layout_below="@id/line3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:id="@+id/back"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_baseline_arrow_back_24"
+                                        app:tint="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/title"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:layout_marginStart="6dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+
+                        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+                    </com.google.android.material.appbar.AppBarLayout>
+
+                    <LinearLayout
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_weight="90"
+                            android:id="@+id/extraRec"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_weight="90"
+                            android:id="@+id/list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"/>
+                        <ProgressBar
+                            android:id="@+id/progress"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            />
+                    </LinearLayout>
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <include
+                    layout="@layout/error_view"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <FrameLayout
+                android:id="@+id/fragmentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </RelativeLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

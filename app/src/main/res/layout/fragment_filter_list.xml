@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Fragment.NavbarFragment.FilterList">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/to_filter"
+            />
+
+        <TextView
+            android:id="@+id/clear"
+            android:text="@string/clear"
+            android:textSize="12dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/line1"
+        android:layout_below="@id/topBar"
+        layout="@layout/single_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/acceptBtn"
+        android:layout_below="@id/line1"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/acceptBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/orange_hover"
+        android:text="@string/filter"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        />
+
+</RelativeLayout>

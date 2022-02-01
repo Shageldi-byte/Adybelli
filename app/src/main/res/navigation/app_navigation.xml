@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/myHomeFragment">
+    <fragment android:id="@+id/myHomeFragment"
+        android:name="com.adybelli.android.Fragment.Home"
+        android:label="fragment_my_home"
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
+
+    <fragment android:id="@+id/mySecondFragment"
+        android:name="com.adybelli.android.Fragment.Search"
+        android:label="fragment_my_second"
+        tools:layout="@layout/fragment_search">
+
+
+    </fragment>
+
+    <fragment android:id="@+id/myThirdFragment"
+        android:name="com.adybelli.android.Fragment.Favourite"
+        android:label="fragment_my_third"
+        tools:layout="@layout/fragment_favourite">
+
+        <action
+            android:id="@+id/action_myThirdFragment_to_myFourthFragment"
+            app:destination="@id/myFourthFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/myFourthFragment"
+        android:name="com.adybelli.android.Fragment.Basket"
+        android:label="fragment_my_fourth"
+        tools:layout="@layout/fragment_basket">
+
+    </fragment>
+
+    <fragment android:id="@+id/myFifthFragment"
+        android:name="com.adybelli.android.Fragment.ProfilePage"
+        android:label="fragment_my_fifth"
+        tools:layout="@layout/fragment_profile_page">
+
+    </fragment>
+</navigation>

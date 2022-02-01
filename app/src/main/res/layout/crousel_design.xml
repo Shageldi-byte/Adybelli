@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="240dp">
+
+    <ImageView
+        android:id="@+id/imageViewMain"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_height="240dp"/>
+
+    <View
+        android:id="@+id/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@color/transparentBlack"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="5dp"
+        android:text="Title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="16dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        android:text="Lorem"
+        android:textColor="@color/white"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/desc"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:text="Shop now"
+        android:textAllCaps="false"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
+        android:drawableTint="@color/white"
+        />
+
+
+
+</RelativeLayout>

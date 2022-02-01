@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Fragment.Home">
+
+    <ScrollView
+        android:id="@+id/scrollContainer"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:descendantFocusability="blocksDescendants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/adybelli_toolbar" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerSlider"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/toolbar"
+                android:overScrollMode="never" />
+
+            <LinearLayout
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPagerSlider"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="2dp"></LinearLayout>
+
+            <TextView
+                android:id="@+id/shop_by_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/indicator"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/by_gender"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shop_by_gender_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shop_by_gender"
+                android:overScrollMode="never" />
+
+
+            <TextView
+                android:id="@+id/popular_categories_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shop_by_gender_rec"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/popular_categories"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popular_categories_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/popular_categories_title"
+                android:overScrollMode="never" />
+
+            <TextView
+                android:id="@+id/top_sellers_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/popular_categories_rec"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/top_sellers"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/top_sellers_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/top_sellers_title"
+                android:overScrollMode="never" />
+
+
+            <WebView
+                android:layout_marginTop="26dp"
+                android:layout_below="@id/top_sellers_rec"
+                android:id="@+id/webView1"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                tools:ignore="WebViewLayout" />
+
+            <ImageView
+                android:id="@+id/firstImg"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/top_sellers_rec"
+                android:layout_marginTop="26dp"
+                />
+
+
+
+            <LinearLayout
+                android:layout_below="@id/firstImg"
+                android:id="@+id/brand_con"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/brands_title"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/brands"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/see_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/all_brands"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/brands_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/brand_con"
+                android:overScrollMode="never" />
+
+
+            <ImageView
+                android:id="@+id/secondImg"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/brands_rec"
+                android:layout_marginTop="26dp"
+                />
+            <WebView
+                android:id="@+id/webView2"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/brands_rec"
+                android:layout_marginTop="26dp"
+                tools:ignore="WebViewLayout" />
+
+
+            <TextView
+                android:id="@+id/newArrivalsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondImg"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/new_arrivals"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newArrivalsRec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/newArrivalsTitle"
+                android:layout_marginBottom="26dp"
+                android:overScrollMode="never" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/error_view"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+</RelativeLayout>

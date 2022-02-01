@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_margin="16dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:background="@color/stroke"
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/successfully_added_card"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_clear_24"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/con"
+        android:padding="12dp"
+        android:layout_below="@id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="85dp"
+            android:layout_height="120dp"
+            android:background="@drawable/stroke"
+            android:src="@drawable/adybelli_icon"
+            android:padding="4dp"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/image"
+            >
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADVANCED TRAINER"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Swarm Siyah erekek bot"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                />
+
+            <LinearLayout
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/colourTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    />
+
+                <TextView
+                    android:id="@+id/colour"
+                    android:layout_marginLeft="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gara we ak"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/sizeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/size_"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    />
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_marginLeft="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="39"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cost"
+                    android:layout_marginRight="12dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:id="@+id/oldCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1224 TMT"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/con"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/fast"
+            android:layout_weight="1"
+            android:background="@drawable/stroke"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/fast_buy"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            />
+
+        <Button
+            android:id="@+id/gotobasket"
+            android:layout_weight="1"
+            android:background="@drawable/orange_hover"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="@string/go_to_card"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:textStyle="normal"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

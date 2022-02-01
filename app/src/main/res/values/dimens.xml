@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="activity_padding_horizontal">16dp</dimen>
+    <dimen name="padd_10">10dp</dimen>
+    <dimen name="ic_delete">30dp</dimen>
+    <dimen name="thumbnail">90dp</dimen>
+    <dimen name="indicator_active_height">8dp</dimen>
+    <dimen name="indicator_passive_height">3dp</dimen>
+    <dimen name="indicator_width">20dp</dimen>
+    <dimen name="image_padding">16dp</dimen>
+    <dimen name="text_size">4sp</dimen>
+    <dimen name="order_product_width">60dp</dimen>
+    <dimen name="order_product_height">110dp</dimen>
+</resources>

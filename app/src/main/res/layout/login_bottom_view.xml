@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/motiv_title"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_motiv"
+        />
+
+    <TextView
+        android:id="@+id/motiv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem"
+        android:layout_margin="14dp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="14dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_baseline_check_24"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:tint="@color/black" />
+        <TextView
+            android:id="@+id/term_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sit"
+            android:layout_marginLeft="12dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>
