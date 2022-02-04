@@ -222,7 +222,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     private void removeFav(int position) {
         try {
             DeleteFavPost post = new DeleteFavPost(products.get(position).getId());
-            Call<RemoveFavResponse> call = apiInterface.deleteFav("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+            Call<RemoveFavResponse> call = apiInterface.deleteFav("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
             call.enqueue(new Callback<RemoveFavResponse>() {
                 @Override
                 public void onResponse(Call<RemoveFavResponse> call, Response<RemoveFavResponse> response) {
@@ -356,7 +356,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         progress.setVisibility(View.VISIBLE);
         apiInterface = APIClient.getClient().create(ApiInterface.class);
         AddToCardPost post = new AddToCardPost(products.get(position).getId(), selectedSizeId, 1);
-        Call<AddToCardResponse> call = apiInterface.addToCard("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+        Call<AddToCardResponse> call = apiInterface.addToCard("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<AddToCardResponse>() {
             @Override
             public void onResponse(Call<AddToCardResponse> call, Response<AddToCardResponse> response) {

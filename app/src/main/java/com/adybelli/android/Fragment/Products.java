@@ -246,7 +246,7 @@ public class Products extends Fragment {
         ProductsPost productsPost = new ProductsPost(strBrand.substring(1, strBrand.length() - 1), strCat.substring(1, strCat.length() - 1),
                 strSize.substring(1, strSize.length() - 1), strColor.substring(1, strColor.length() - 1), isDiscount, page, 20, sortVal, min, max);
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<GetProducts> call = apiInterface.getProducts("Bearer " + Utils.getSharedPreference(context, "tkn"), productsPost);
+        Call<GetProducts> call = apiInterface.getProducts("Bearer " + Utils.getSharedPreference(context, "tkn"), productsPost,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetProducts>() {
             @Override
             public void onResponse(Call<GetProducts> call, Response<GetProducts> response) {
@@ -313,7 +313,7 @@ public class Products extends Fragment {
         String strColor = Arrays.toString(colorsStr.toArray());
         ProductOptionPost post = new ProductOptionPost(strBrand.substring(1, strBrand.length() - 1), strCat.substring(1, strCat.length() - 1),
                 strSize.substring(1, strSize.length() - 1), strColor.substring(1, strColor.length() - 1), isDiscount);
-        Call<ProductOption> call = apiInterface.getProductsOptions(post);
+        Call<ProductOption> call = apiInterface.getProductsOptions(post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<ProductOption>() {
             @Override
             public void onResponse(Call<ProductOption> call, Response<ProductOption> response) {

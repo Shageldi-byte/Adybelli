@@ -197,7 +197,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                         .setAnimationSpeed(2)
                         .setDimAmount(0.5f);
                 kProgressHUD.show();
-                Call<DeleteAddressResponse> call = apiInterface.deleteAddress("Bearer " + Utils.getSharedPreference(context, "tkn"), new DeleteAddressBody(Integer.valueOf(addressLists.get(position).getUa_id())));
+                Call<DeleteAddressResponse> call = apiInterface.deleteAddress("Bearer " + Utils.getSharedPreference(context, "tkn"), new DeleteAddressBody(Integer.valueOf(addressLists.get(position).getUa_id())),Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call.enqueue(new Callback<DeleteAddressResponse>() {
                     @Override
                     public void onResponse(Call<DeleteAddressResponse> call, Response<DeleteAddressResponse> response) {
@@ -387,7 +387,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 kProgressHUD.show();
                 //Toast.makeText(context, welayatlarOrginal.get(dr1.getSelectedIndex()).getLoc_id()+" / "+etraplarOrginal.get(dr2.getSelectedIndex()).getLoc_id(), Toast.LENGTH_SHORT).show();
                 AddAddressPost post = new AddAddressPost(object.getUa_id(), name.getText().toString(), address.getText().toString(), "+9936"+tel.getText().toString(), s1 + "", s2 + "");
-                Call<AddAddressResponse> call1 = apiInterface.updateAddress("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                Call<AddAddressResponse> call1 = apiInterface.updateAddress("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call1.enqueue(new Callback<AddAddressResponse>() {
                     @Override
                     public void onResponse(Call<AddAddressResponse> call, Response<AddAddressResponse> response) {

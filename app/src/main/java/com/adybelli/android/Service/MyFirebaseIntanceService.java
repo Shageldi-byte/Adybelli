@@ -179,22 +179,7 @@ public class MyFirebaseIntanceService extends FirebaseMessagingService {
         super.onNewToken(s);
         Log.d("TOKENFIREBASE", s);
         Utils.setSharedPreference(getApplicationContext(),"notif_token",s);
-        if (!Utils.getSharedPreference(this, "tkn").isEmpty() || !Utils.getSharedPreference(this, "userId").isEmpty()) {
-            ApiInterface apiInterface = APIClient.getClient().create(ApiInterface.class);
-            UserUpdateTokenPost post = new UserUpdateTokenPost(Utils.getSharedPreference(this, "notif_token"));
-            Call<UpdateUserTokenResponse> call = apiInterface.updateUserToken("Bearer " + Utils.getSharedPreference(this, "tkn"), post);
-            call.enqueue(new Callback<UpdateUserTokenResponse>() {
-                @Override
-                public void onResponse(Call<UpdateUserTokenResponse> call, Response<UpdateUserTokenResponse> response) {
 
-                }
-
-                @Override
-                public void onFailure(Call<UpdateUserTokenResponse> call, Throwable t) {
-
-                }
-            });
-        }
     }
 
 }

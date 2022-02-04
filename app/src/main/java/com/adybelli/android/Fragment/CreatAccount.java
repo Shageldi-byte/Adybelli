@@ -72,6 +72,20 @@ public class CreatAccount extends DialogFragment {
         initComponents();
         setListeners();
         setFonts();
+        if(!Utils.getSharedPreference(context,"gender").isEmpty()){
+            try{
+                gender=Integer.parseInt(Utils.getSharedPreference(context,"gender"));
+                if(gender==1){
+                    women.setChecked(true);
+                    man.setChecked(false);
+                } else if(gender==2){
+                    women.setChecked(false);
+                    man.setChecked(true);
+                }
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
         return view;
     }
 
@@ -145,7 +159,7 @@ public class CreatAccount extends DialogFragment {
                 kProgressHUD.show();
                 apiInterface = APIClient.getClient().create(ApiInterface.class);
                 SignInPost post=new SignInPost("+9936"+phone_input.getText().toString(),"",1);
-                Call<UserVerificationBody> call=apiInterface.userVerification(post);
+                Call<UserVerificationBody> call=apiInterface.userVerification(post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call.enqueue(new Callback<UserVerificationBody>() {
                     @Override
                     public void onResponse(Call<UserVerificationBody> call, Response<UserVerificationBody> response) {
@@ -191,7 +205,7 @@ public class CreatAccount extends DialogFragment {
     private void sendCode() {
         apiInterface= APIClient.getClient().create(ApiInterface.class);
         SignInPost post=new SignInPost("+9936"+phone_input.getText().toString(),"",0);
-        Call<UserVerificationBody> call=apiInterface.userVerification(post);
+        Call<UserVerificationBody> call=apiInterface.userVerification(post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<UserVerificationBody>() {
             @Override
             public void onResponse(Call<UserVerificationBody> call, Response<UserVerificationBody> response) {

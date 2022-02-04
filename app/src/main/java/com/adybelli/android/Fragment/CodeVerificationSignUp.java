@@ -93,7 +93,7 @@ public class CodeVerificationSignUp extends DialogFragment {
                 kProgressHUD.show();
                 apiInterface = APIClient.getClient().create(ApiInterface.class);
                 CreateAccountPost post = new CreateAccountPost(name,surname, phoneNumber, gender, code_input.getText().toString());
-                Call<CreateAccountResponse> call = apiInterface.signUp(post);
+                Call<CreateAccountResponse> call = apiInterface.signUp(post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call.enqueue(new Callback<CreateAccountResponse>() {
                     @Override
                     public void onResponse(Call<CreateAccountResponse> call, Response<CreateAccountResponse> response) {
@@ -192,7 +192,7 @@ public class CodeVerificationSignUp extends DialogFragment {
         kProgressHUD.show();
         apiInterface = APIClient.getClient().create(ApiInterface.class);
         SignInPost post = new SignInPost(phoneNumber, "",0);
-        Call<UserVerificationBody> call = apiInterface.userVerification(post);
+        Call<UserVerificationBody> call = apiInterface.userVerification(post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<UserVerificationBody>() {
             @Override
             public void onResponse(Call<UserVerificationBody> call, Response<UserVerificationBody> response) {

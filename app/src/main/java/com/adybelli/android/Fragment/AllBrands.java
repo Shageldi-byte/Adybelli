@@ -142,7 +142,7 @@ public class AllBrands extends Fragment implements EndlessRecyclerView.Pager {
         shouldLoadMore = false;
 
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<AllBrandsResponse> call = apiInterface.getAllBrands(page, 60);
+        Call<AllBrandsResponse> call = apiInterface.getAllBrands(page, 60,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<AllBrandsResponse>() {
             @Override
             public void onResponse(Call<AllBrandsResponse> call, Response<AllBrandsResponse> response) {

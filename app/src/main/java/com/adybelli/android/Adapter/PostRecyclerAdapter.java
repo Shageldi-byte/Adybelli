@@ -204,7 +204,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 public void onEvent(ImageView button, boolean buttonState) {
                     if(buttonState){
                         AddFavPost post=new AddFavPost(product.getId()+"");
-                        Call<AddFavResponse> call=apiInterface.addFavourites("Bearer "+ Utils.getSharedPreference(context,"tkn"),post);
+                        Call<AddFavResponse> call=apiInterface.addFavourites("Bearer "+ Utils.getSharedPreference(context,"tkn"),post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                         call.enqueue(new Callback<AddFavResponse>() {
                             @Override
                             public void onResponse(Call<AddFavResponse> call, Response<AddFavResponse> response) {

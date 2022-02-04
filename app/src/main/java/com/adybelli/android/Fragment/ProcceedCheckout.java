@@ -340,7 +340,7 @@ public class ProcceedCheckout extends Fragment {
                 kProgressHUD.show();
                 apiInterface = APIClient.getClient().create(ApiInterface.class);
                 CreateOrderPost post = new CreateOrderPost(1, AddressAdapter.addressId, payment_method, selected_list_ids,editText.getText().toString());
-                Call<CreateOrderResponse> call = apiInterface.createOrder("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                Call<CreateOrderResponse> call = apiInterface.createOrder("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call.enqueue(new Callback<CreateOrderResponse>() {
                     @Override
                     public void onResponse(Call<CreateOrderResponse> call, Response<CreateOrderResponse> response) {

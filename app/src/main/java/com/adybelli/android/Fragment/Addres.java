@@ -150,7 +150,7 @@ public class Addres extends Fragment {
     private void setAddress() {
 
         apiInterface=APIClient.getClient().create(ApiInterface.class);
-        Call<GetAddressResponse> call=apiInterface.getAddress("Bearer "+Utils.getSharedPreference(context,"tkn"));
+        Call<GetAddressResponse> call=apiInterface.getAddress("Bearer "+Utils.getSharedPreference(context,"tkn"),Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetAddressResponse>() {
             @Override
             public void onResponse(Call<GetAddressResponse> call, Response<GetAddressResponse> response) {
@@ -192,7 +192,7 @@ public class Addres extends Fragment {
 
     private void showDialog() {
         apiInterface= APIClient.getClient().create(ApiInterface.class);
-        Call<GetLocations> call=apiInterface.getLocations();
+        Call<GetLocations> call=apiInterface.getLocations(Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetLocations>() {
             @Override
             public void onResponse(Call<GetLocations> call, Response<GetLocations> response) {
@@ -314,7 +314,7 @@ public class Addres extends Fragment {
 
                 kProgressHUD.show();
                 AddAddressPost post=new AddAddressPost("",name.getText().toString(),address.getText().toString(),"+9936"+tel.getText().toString(),welayatlarOrginal.get(dr1.getSelectedItemPosition()-1).getLoc_id(),etraplarOrginal.get(dr2.getSelectedItemPosition()-1).getLoc_id()+"");
-                Call<AddAddressResponse> call1=apiInterface.addAddress("Bearer "+Utils.getSharedPreference(context,"tkn"),post);
+                Call<AddAddressResponse> call1=apiInterface.addAddress("Bearer "+Utils.getSharedPreference(context,"tkn"),post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call1.enqueue(new Callback<AddAddressResponse>() {
                     @Override
                     public void onResponse(Call<AddAddressResponse> call, Response<AddAddressResponse> response) {

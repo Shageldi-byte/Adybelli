@@ -235,6 +235,10 @@ public class ProfilePage extends Fragment {
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Utils.getLanguage(context).equals("tm") || Utils.getLanguage(context).isEmpty()) {
+                    bottomSheetDialog.dismiss();
+                    return;
+                }
                 bottomSheetDialog.dismiss();
                 Utils.setLocale("tm",context);
                 MainActivity.firstFragment = new Home();
@@ -249,6 +253,10 @@ public class ProfilePage extends Fragment {
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Utils.getLanguage(context).equals("ru")) {
+                    bottomSheetDialog.dismiss();
+                    return;
+                }
                 bottomSheetDialog.dismiss();
                 Utils.setLocale("ru",context);
                 MainActivity.firstFragment = new Home();

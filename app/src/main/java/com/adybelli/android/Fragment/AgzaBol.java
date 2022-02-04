@@ -85,7 +85,7 @@ public class AgzaBol extends Fragment {
                 kProgressHUD.show();
                 apiInterface = APIClient.getClient().create(ApiInterface.class);
                 SignInPost post = new SignInPost("+9936"+code_input.getText().toString(), "",1);
-                Call<UserVerificationBody> call = apiInterface.userVerification(post);
+                Call<UserVerificationBody> call = apiInterface.userVerification(post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call.enqueue(new Callback<UserVerificationBody>() {
                     @Override
                     public void onResponse(Call<UserVerificationBody> call, Response<UserVerificationBody> response) {

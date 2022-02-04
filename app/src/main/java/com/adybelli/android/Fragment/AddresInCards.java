@@ -137,7 +137,7 @@ public class AddresInCards extends Fragment {
     private void setAddress() {
 
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<GetUserCardInfo> call = apiInterface.getUserCartInfo("Bearer " + Utils.getSharedPreference(context, "tkn"), selected_id_list);
+        Call<GetUserCardInfo> call = apiInterface.getUserCartInfo("Bearer " + Utils.getSharedPreference(context, "tkn"), selected_id_list,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetUserCardInfo>() {
             @Override
             public void onResponse(Call<GetUserCardInfo> call, Response<GetUserCardInfo> response) {
@@ -287,7 +287,7 @@ public class AddresInCards extends Fragment {
 
                 kProgressHUD.show();
                 AddAddressPost post = new AddAddressPost("", name.getText().toString(), address.getText().toString(), "+9936" + tel.getText().toString(), welayatlarOrginal.get(dr1.getSelectedItemPosition() - 1).getLoc_id(), etraplarOrginal.get(dr2.getSelectedItemPosition() - 1).getLoc_id() + "");
-                Call<AddAddressResponse> call1 = apiInterface.addAddress("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                Call<AddAddressResponse> call1 = apiInterface.addAddress("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call1.enqueue(new Callback<AddAddressResponse>() {
                     @Override
                     public void onResponse(Call<AddAddressResponse> call, Response<AddAddressResponse> response) {

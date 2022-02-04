@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -46,12 +47,12 @@ import java.util.Objects;
 import java.util.Random;
 
 public class ShareProductImage extends AppCompatActivity {
-    private String imageUrl,name,trademark,cost,id;
+    private String imageUrl,name,trademark,cost,id,old_cost;
     private ImageView imageView;
     private ImageView share,close;
     private Context context=this;
     private RelativeLayout imageContainer;
-    private TextView trademarkTV,nameTV,idTV,costTV,title;
+    private TextView trademarkTV,nameTV,idTV,costTV,title,oldCost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,9 @@ public class ShareProductImage extends AppCompatActivity {
         trademark=intent.getStringExtra("trademark");
         cost=intent.getStringExtra("cost");
         id=intent.getStringExtra("id");
+        old_cost=intent.getStringExtra("old_cost");
+
+
 
         initComponents();
         setFonts();
@@ -89,6 +93,14 @@ public class ShareProductImage extends AppCompatActivity {
         trademarkTV.setText(trademark);
         nameTV.setText(name);
         idTV.setText("Product code: "+id);
+        costTV.setText(cost+" TMT");
+        if(old_cost.isEmpty()){
+            oldCost.setVisibility(View.GONE);
+        } else{
+            oldCost.setVisibility(View.VISIBLE);
+            oldCost.setText(old_cost+" TMT");
+        }
+        oldCost.setPaintFlags(oldCost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         costTV.setText(cost+" TMT");
     }
 
@@ -185,5 +197,6 @@ public class ShareProductImage extends AppCompatActivity {
         nameTV=findViewById(R.id.name);
         idTV=findViewById(R.id.idTV);
         costTV=findViewById(R.id.costTV);
+        oldCost=findViewById(R.id.oldCost);
     }
 }

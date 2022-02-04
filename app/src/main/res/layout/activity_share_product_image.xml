@@ -120,14 +120,30 @@
                 android:textSize="14sp"
                 />
 
-            <TextView
-                android:id="@+id/costTV"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0 TMT"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/costTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 TMT"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    />
+
+                <TextView
+                    android:id="@+id/oldCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 TMT"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

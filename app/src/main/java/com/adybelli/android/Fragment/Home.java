@@ -195,7 +195,7 @@ public class Home extends Fragment {
 
     private void requestVersion() {
         ApiInterface api = APIClient.getClient().create(ApiInterface.class);
-        Call<GetUserById> call = api.getVersionUser("Bearer " + Utils.getSharedPreference(context, "tkn"), "android");
+        Call<GetUserById> call = api.getVersionUser("Bearer " + Utils.getSharedPreference(context, "tkn"), "android",Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetUserById>() {
             @Override
             public void onResponse(Call<GetUserById> call, Response<GetUserById> response) {
@@ -227,6 +227,25 @@ public class Home extends Fragment {
     private void logout() {
         Utils.setSharedPreference(context, "tkn", "");
         Utils.setSharedPreference(context, "userId", "");
+    }
+
+    private void sendNotificationToken(){
+        if (!Utils.getSharedPreference(context, "tkn").isEmpty() || !Utils.getSharedPreference(context, "userId").isEmpty()) {
+            ApiInterface apiInterface = APIClient.getClient().create(ApiInterface.class);
+            UserUpdateTokenPost post = new UserUpdateTokenPost(Utils.getSharedPreference(context, "notif_token"));
+            Call<UpdateUserTokenResponse> call = apiInterface.updateUserToken("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
+            call.enqueue(new Callback<UpdateUserTokenResponse>() {
+                @Override
+                public void onResponse(Call<UpdateUserTokenResponse> call, Response<UpdateUserTokenResponse> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<UpdateUserTokenResponse> call, Throwable t) {
+
+                }
+            });
+        }
     }
 
     private void showUpdateDialog() {
@@ -265,7 +284,7 @@ public class Home extends Fragment {
 
     private void requestHome() {
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<com.adybelli.android.Object.Home> call = apiInterface.getHome("Bearer " + Utils.getSharedPreference(context, "tkn"), gender, "android");
+        Call<com.adybelli.android.Object.Home> call = apiInterface.getHome("Bearer " + Utils.getSharedPreference(context, "tkn"), gender, "android",Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<com.adybelli.android.Object.Home>() {
             @Override
             public void onResponse(Call<com.adybelli.android.Object.Home> call, Response<com.adybelli.android.Object.Home> response) {
@@ -318,6 +337,8 @@ public class Home extends Fragment {
                     scrollContainer.setVisibility(View.GONE);
                     showErrorView(R.drawable.no_connection, context.getResources().getString(R.string.noInternet), getResources().getString(R.string.checkYourInternet), getResources().getString(R.string.continueValue));
                 }
+
+                sendNotificationToken();
 
 
             }

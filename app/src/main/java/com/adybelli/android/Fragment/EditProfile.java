@@ -103,7 +103,7 @@ public class EditProfile extends Fragment {
         Profile.get().getTabLayout().setVisibility(View.GONE);
         progress.setVisibility(View.VISIBLE);
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<GetUserById> call = apiInterface.getUserById("Bearer " + Utils.getSharedPreference(context, "tkn"));
+        Call<GetUserById> call = apiInterface.getUserById("Bearer " + Utils.getSharedPreference(context, "tkn"),Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetUserById>() {
             @Override
             public void onResponse(Call<GetUserById> call, Response<GetUserById> response) {
@@ -279,7 +279,7 @@ public class EditProfile extends Fragment {
                 kProgressHUD.show();
                 apiInterface = APIClient.getClient().create(ApiInterface.class);
                 UpdateUserInfoPost post = new UpdateUserInfoPost(ady, fam, tel, gender + "", dateBirthday);
-                Call<UpdateUserResponse> call = apiInterface.updateUser("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                Call<UpdateUserResponse> call = apiInterface.updateUser("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call.enqueue(new Callback<UpdateUserResponse>() {
                     @Override
                     public void onResponse(Call<UpdateUserResponse> call, Response<UpdateUserResponse> response) {

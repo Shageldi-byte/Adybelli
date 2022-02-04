@@ -111,7 +111,7 @@ public class Orders extends Fragment implements EndlessRecyclerView.Pager {
 
         shouldLoadMore=false;
         apiInterface= APIClient.getClient().create(ApiInterface.class);
-        Call<GetUserOrdersResponse> call=apiInterface.getUserOrders("Bearer "+Utils.getSharedPreference(context,"tkn"),count,20);
+        Call<GetUserOrdersResponse> call=apiInterface.getUserOrders("Bearer "+Utils.getSharedPreference(context,"tkn"),count,20,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetUserOrdersResponse>() {
             @Override
             public void onResponse(Call<GetUserOrdersResponse> call, Response<GetUserOrdersResponse> response) {

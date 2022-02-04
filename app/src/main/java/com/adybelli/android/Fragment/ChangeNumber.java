@@ -86,7 +86,7 @@ public class ChangeNumber extends Fragment {
                     kProgressHUD.show();
                     apiInterface = APIClient.getClient().create(ApiInterface.class);
                     UpdateMailPost post = new UpdateMailPost(number.getText().toString());
-                    Call<UpdateMailResponse> call = apiInterface.updateMail("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                    Call<UpdateMailResponse> call = apiInterface.updateMail("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                     call.enqueue(new Callback<UpdateMailResponse>() {
                         @Override
                         public void onResponse(Call<UpdateMailResponse> call, Response<UpdateMailResponse> response) {

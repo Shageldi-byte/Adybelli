@@ -131,7 +131,7 @@ public class MoreInfoAdapter extends RecyclerView.Adapter<MoreInfoAdapter.ViewHo
                         progressHUD.show();
                         apiInterface = APIClient.getClient().create(ApiInterface.class);
                         CancelOrderProduct cancelOrder = new CancelOrderProduct(object.getOd_id());
-                        Call<UpdateMailResponse> call = apiInterface.cancelOrderProduct("Bearer " + Utils.getSharedPreference(context, "tkn"), cancelOrder);
+                        Call<UpdateMailResponse> call = apiInterface.cancelOrderProduct("Bearer " + Utils.getSharedPreference(context, "tkn"), cancelOrder,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                         call.enqueue(new Callback<UpdateMailResponse>() {
                             @Override
                             public void onResponse(Call<UpdateMailResponse> call, Response<UpdateMailResponse> response) {

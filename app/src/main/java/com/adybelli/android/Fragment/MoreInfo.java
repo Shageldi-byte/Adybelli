@@ -144,7 +144,7 @@ public class MoreInfo extends Fragment {
     private void request() {
 
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<GetUserSingleOrderResponse> call = apiInterface.getSingleOrder("Bearer " + Utils.getSharedPreference(context, "tkn"), id);
+        Call<GetUserSingleOrderResponse> call = apiInterface.getSingleOrder("Bearer " + Utils.getSharedPreference(context, "tkn"), id,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetUserSingleOrderResponse>() {
             @Override
             public void onResponse(Call<GetUserSingleOrderResponse> call, Response<GetUserSingleOrderResponse> response) {
@@ -712,7 +712,7 @@ public class MoreInfo extends Fragment {
                         progress1.show();
                         apiInterface = APIClient.getClient().create(ApiInterface.class);
                         CancelOrder cancelOrder = new CancelOrder(id);
-                        Call<UpdateMailResponse> call = apiInterface.cancelOrder("Bearer " + Utils.getSharedPreference(context, "tkn"), cancelOrder);
+                        Call<UpdateMailResponse> call = apiInterface.cancelOrder("Bearer " + Utils.getSharedPreference(context, "tkn"), cancelOrder,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                         call.enqueue(new Callback<UpdateMailResponse>() {
                             @Override
                             public void onResponse(Call<UpdateMailResponse> call, Response<UpdateMailResponse> response) {

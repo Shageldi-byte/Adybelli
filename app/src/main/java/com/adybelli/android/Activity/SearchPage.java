@@ -279,7 +279,7 @@ public class SearchPage extends AppCompatActivity {
 
         apiInterface = APIClient.getClient().create(ApiInterface.class);
         SearchPost post = new SearchPost(page, 20, autotext.getText().toString());
-        Call<GetProducts> call = apiInterface.getSearch("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+        Call<GetProducts> call = apiInterface.getSearch("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetProducts>() {
             @Override
             public void onResponse(Call<GetProducts> call, Response<GetProducts> response) {

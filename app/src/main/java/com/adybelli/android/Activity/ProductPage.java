@@ -181,12 +181,7 @@ public class ProductPage extends AppCompatActivity {
     private void firstTime(){
         imagesArray.clear();
         imagesArray.add(new SingleProductImages(tempImage, tempImage, tempImage));
-        cursor = recentlyDB.getAll();
-        Cursor cursor1 = recentlyDB.getSelect(productId + "");
 
-        if (cursor1.getCount() == 0) {
-            recentlyDB.insert(productId + "");
-        }
         slider();
     }
 
@@ -213,7 +208,7 @@ public class ProductPage extends AppCompatActivity {
     private void requestProduct() {
         productSkelton.show();
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<SingleProduct> cal = apiInterface.getSingleProduct("Bearer " + Utils.getSharedPreference(context, "tkn"), productId);
+        Call<SingleProduct> cal = apiInterface.getSingleProduct("Bearer " + Utils.getSharedPreference(context, "tkn"), productId,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         cal.enqueue(new Callback<SingleProduct>() {
             @Override
             public void onResponse(Call<SingleProduct> call, Response<SingleProduct> response) {
@@ -475,6 +470,10 @@ public class ProductPage extends AppCompatActivity {
                     intent.putExtra("name", body.getName());
                 intent.putExtra("trademark", body.getTrademarks().getName());
                 intent.putExtra("cost", body.getSale_price() + "");
+                if(body.getPrice()==null)
+                    intent.putExtra("old_cost", "");
+                else
+                    intent.putExtra("old_cost", body.getPrice() + "");
                 intent.putExtra("id", body.getProd_id() + "");
                 startActivity(intent);
             }
@@ -516,7 +515,7 @@ public class ProductPage extends AppCompatActivity {
                 Favourite.isChanged = true;
                 if (buttonState) {
                     AddFavPost post = new AddFavPost(productId + "");
-                    Call<AddFavResponse> call = apiInterface.addFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                    Call<AddFavResponse> call = apiInterface.addFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                     call.enqueue(new Callback<AddFavResponse>() {
                         @Override
                         public void onResponse(Call<AddFavResponse> call, Response<AddFavResponse> response) {
@@ -535,7 +534,7 @@ public class ProductPage extends AppCompatActivity {
                 } else {
                     try {
                         DeleteFavPost post = new DeleteFavPost(productId);
-                        Call<RemoveFavResponse> call = apiInterface.deleteFav("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                        Call<RemoveFavResponse> call = apiInterface.deleteFav("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                         call.enqueue(new Callback<RemoveFavResponse>() {
                             @Override
                             public void onResponse(Call<RemoveFavResponse> call, Response<RemoveFavResponse> response) {
@@ -738,7 +737,7 @@ public class ProductPage extends AppCompatActivity {
                 acceptBtn.setVisibility(View.GONE);
                 apiInterface = APIClient.getClient().create(ApiInterface.class);
                 AddToCardPost post = new AddToCardPost(productId, selectedSizeId, 1);
-                Call<AddToCardResponse> call = apiInterface.addToCard("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                Call<AddToCardResponse> call = apiInterface.addToCard("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                 call.enqueue(new Callback<AddToCardResponse>() {
                     @Override
                     public void onResponse(Call<AddToCardResponse> call, Response<AddToCardResponse> response) {
@@ -828,22 +827,38 @@ public class ProductPage extends AppCompatActivity {
     }
 
     private void recently() {
+        cursor = recentlyDB.getAll();
         TopSoldAdapter adapter4 = new TopSoldAdapter(context, recentlyProducts,true);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
         recently_rec.setLayoutManager(linearLayoutManager2);
         recently_rec.setAdapter(adapter4);
         String ids = "";
+
         if (cursor.getCount() == 0) {
             recentlyTitle.setVisibility(View.GONE);
             recently_rec.setVisibility(View.GONE);
+            Cursor cursor1 = recentlyDB.getSelect(productId + "");
+
+            if (cursor1.getCount() == 0) {
+                recentlyDB.insert(productId + "");
+            }
+            recentlyTitle.setVisibility(View.GONE);
+            recently_rec.setVisibility(View.GONE);
+            recentlySkeleton.hide();
         } else {
             while (cursor.moveToNext()) {
-                ids += cursor.getString(1) + ",";
+                if(!String.valueOf(productId).equals(cursor.getString(1))) {
+                    ids += cursor.getString(1) + ",";
+                }
             }
-
             ids = ids.substring(0, ids.length() - 1);
+            Cursor cursor1 = recentlyDB.getSelect(productId + "");
+
+            if (cursor1.getCount() == 0) {
+                recentlyDB.insert(productId + "");
+            }
             apiInterface = APIClient.getClient().create(ApiInterface.class);
-            Call<GetProducts2> call = apiInterface.getRecently("Bearer " + Utils.getSharedPreference(context, "tkn"), ids);
+            Call<GetProducts2> call = apiInterface.getRecently("Bearer " + Utils.getSharedPreference(context, "tkn"), ids,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
             call.enqueue(new Callback<GetProducts2>() {
                 @Override
                 public void onResponse(Call<GetProducts2> call, Response<GetProducts2> response) {
@@ -855,6 +870,11 @@ public class ProductPage extends AppCompatActivity {
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
                         recently_rec.setLayoutManager(linearLayoutManager);
                         recently_rec.setAdapter(adapter3);
+
+                        if(recentlyProducts.size()<=0){
+                            recentlyTitle.setVisibility(View.GONE);
+                            recently_rec.setVisibility(View.GONE);
+                        }
 
                     } else {
                         recentlyTitle.setVisibility(View.GONE);

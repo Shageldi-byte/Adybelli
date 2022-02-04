@@ -135,7 +135,7 @@ public class Search extends Fragment {
 
 
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<Catalog> call = apiInterface.getCatalog();
+        Call<Catalog> call = apiInterface.getCatalog(Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<Catalog>() {
             @Override
             public void onResponse(Call<Catalog> call, Response<Catalog> response) {

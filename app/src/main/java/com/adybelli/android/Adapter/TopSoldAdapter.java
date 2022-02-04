@@ -106,7 +106,7 @@ public class TopSoldAdapter extends RecyclerView.Adapter<TopSoldAdapter.ViewHold
 
                     products.get(position).setIs_favorite(1);
                     AddFavPost post = new AddFavPost(product.getId() + "");
-                    Call<AddFavResponse> call = apiInterface.addFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                    Call<AddFavResponse> call = apiInterface.addFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                     call.enqueue(new Callback<AddFavResponse>() {
                         @Override
                         public void onResponse(Call<AddFavResponse> call, Response<AddFavResponse> response) {
@@ -130,7 +130,7 @@ public class TopSoldAdapter extends RecyclerView.Adapter<TopSoldAdapter.ViewHold
 
                         products.get(position).setFav_id(0);
                         DeleteFavPost post = new DeleteFavPost(products.get(holder.getAdapterPosition()).getId());
-                        Call<RemoveFavResponse> call = apiInterface.deleteFav("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+                        Call<RemoveFavResponse> call = apiInterface.deleteFav("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
                         call.enqueue(new Callback<RemoveFavResponse>() {
                             @Override
                             public void onResponse(Call<RemoveFavResponse> call, Response<RemoveFavResponse> response) {

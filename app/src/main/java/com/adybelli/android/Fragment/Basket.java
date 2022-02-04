@@ -203,7 +203,7 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
         progress.setVisibility(View.VISIBLE);
         disable.setVisibility(View.VISIBLE);
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<GetUserCard> call = apiInterface.getUserCard("Bearer " + Utils.getSharedPreference(context, "tkn"));
+        Call<GetUserCard> call = apiInterface.getUserCard("Bearer " + Utils.getSharedPreference(context, "tkn"),Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetUserCard>() {
             @Override
             public void onResponse(Call<GetUserCard> call, Response<GetUserCard> response) {
@@ -514,7 +514,7 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
 
     private void removeAddFav(String prod_id, int position) {
         AddFavPost post = new AddFavPost(prod_id);
-        Call<AddFavResponse> call = apiInterface.addFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+        Call<AddFavResponse> call = apiInterface.addFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<AddFavResponse>() {
             @Override
             public void onResponse(Call<AddFavResponse> call, Response<AddFavResponse> response) {
@@ -534,7 +534,7 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
 
     private void updateCard(int size_id, int count, int cart_id) {
         UpdateUserCardPost post = new UpdateUserCardPost(size_id, count, cart_id);
-        Call<UpdateUserCard> call = apiInterface.updateUserCard("Bearer " + Utils.getSharedPreference(context, "tkn"), post);
+        Call<UpdateUserCard> call = apiInterface.updateUserCard("Bearer " + Utils.getSharedPreference(context, "tkn"), post,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<UpdateUserCard>() {
             @Override
             public void onResponse(Call<UpdateUserCard> call, Response<UpdateUserCard> response) {

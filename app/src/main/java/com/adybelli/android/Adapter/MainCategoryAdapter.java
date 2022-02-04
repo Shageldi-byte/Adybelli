@@ -175,7 +175,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapte
                 .load(R.layout.skelton_main_category)
                 .show(); //default count is 10
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<GetCategory> call = apiInterface.getCategories(id);
+        Call<GetCategory> call = apiInterface.getCategories(id,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetCategory>() {
             @Override
             public void onResponse(Call<GetCategory> call, Response<GetCategory> response) {

@@ -218,7 +218,7 @@ public class Favourite extends Fragment {
 
 
         apiInterface = APIClient.getClient().create(ApiInterface.class);
-        Call<GetFavs> call = apiInterface.getFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), page, 20);
+        Call<GetFavs> call = apiInterface.getFavourites("Bearer " + Utils.getSharedPreference(context, "tkn"), page, 20,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<GetFavs>() {
             @Override
             public void onResponse(Call<GetFavs> call, Response<GetFavs> response) {
