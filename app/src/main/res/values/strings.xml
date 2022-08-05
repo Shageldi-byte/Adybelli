@@ -212,6 +212,11 @@
     <string name="thanks">Adybelli Internet dükanyny saýlanyňyz üçin sagboluň!</string>
     <string name="no_orders">Siziň sargytlaryňyz ýok</string>
     <string name="okardaky_ny_anlary_azy">Ýokardaky nyşanlary ýazyň</string>
+    <string name="refresh">Täzele</string>
+    <string name="to_update">Täzeliklerden habarly bolmak üçin applikasiýany täzelemeli.</string>
+    <string name="update_app">Täzele</string>
+    <string name="seller">Satyjy:</string>
+    <string name="sellers">Satyjylar</string>
 
 
 </resources>

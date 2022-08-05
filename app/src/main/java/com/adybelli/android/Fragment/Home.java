@@ -50,6 +50,7 @@ import com.adybelli.android.Adapter.BrandsAdapter;
 import com.adybelli.android.Adapter.CarouselAdapter;
 import com.adybelli.android.Adapter.PopularCategoriesAdapter;
 import com.adybelli.android.Adapter.ProductAdapter;
+import com.adybelli.android.Adapter.SellerAdapter;
 import com.adybelli.android.Adapter.ShopByGenderAdapter;
 import com.adybelli.android.Adapter.TopSoldAdapter;
 import com.adybelli.android.Api.APIClient;
@@ -63,6 +64,7 @@ import com.adybelli.android.Object.GetUserById;
 import com.adybelli.android.Object.PopularCategories;
 import com.adybelli.android.Object.Product;
 import com.adybelli.android.Object.ShopByGender;
+import com.adybelli.android.Object.Store;
 import com.adybelli.android.Object.TopSold;
 import com.adybelli.android.Object.UpdateUserTokenResponse;
 import com.adybelli.android.Post.UserUpdateTokenPost;
@@ -125,7 +127,7 @@ public class Home extends Fragment {
 
     // New Arrivals
     private TextView newArrivalsTitle;
-    private RecyclerView newArrivalsRec;
+    private RecyclerView newArrivalsRec,seller_rec;
     private ArrayList<TopSold> newArrivalsArrayList = new ArrayList<>();
     private boolean isFirstTime = true;
     private int mCurrentPosition = 0, lastPageIndex;
@@ -140,15 +142,17 @@ public class Home extends Fragment {
 
     private LinearLayout errorContainer;
     private ImageView errorImage, firstImg, secondImg;
-    private TextView errorTitle, errorMessage;
+    private TextView errorTitle, errorMessage,seller_title,see_all_seller;
     private Button errorButton;
 
     private ScrollView scrollContainer;
     private KProgressHUD kProgressHUD = null;
     private WebView webView1, webView2;
     private String langugae = "tm";
-    private ArrayList<Constants> constants = new ArrayList<>();
+    private ArrayList<Constants> constants1 = new ArrayList<>();
+    private ArrayList<Constants> constants2 = new ArrayList<>();
     private Integer gender = 1;
+    private ArrayList<Store> stores=new ArrayList<>();
 
     public Home() {
     }
@@ -189,8 +193,30 @@ public class Home extends Fragment {
 
         Log.e("Token", Utils.getSharedPreference(context, "tkn"));
 
+        setStores();
+
 
         return view;
+    }
+
+    private void setStores() {
+        seller_title.setTypeface(AppFont.getBoldFont(context));
+        see_all_seller.setTypeface(AppFont.getRegularFont(context));
+        stores.clear();
+        stores.add(new Store("Adybelli","1"));
+        stores.add(new Store("Store-1","2"));
+        stores.add(new Store("Store-2","3"));
+        stores.add(new Store("Store-3","4"));
+        stores.add(new Store("Store-4","5"));
+        stores.add(new Store("Store-5","6"));
+        stores.add(new Store("Store-6","7"));
+        stores.add(new Store("Store-7","8"));
+        stores.add(new Store("Store-8","9"));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
+        SellerAdapter adapter=new SellerAdapter(context,stores,getFragmentManager(),getActivity());
+        seller_rec.setLayoutManager(linearLayoutManager);
+        seller_rec.setAdapter(adapter);
+
     }
 
     private void requestVersion() {
@@ -283,6 +309,7 @@ public class Home extends Fragment {
 
 
     private void requestHome() {
+
         apiInterface = APIClient.getClient().create(ApiInterface.class);
         Call<com.adybelli.android.Object.Home> call = apiInterface.getHome("Bearer " + Utils.getSharedPreference(context, "tkn"), gender, "android",Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
         call.enqueue(new Callback<com.adybelli.android.Object.Home>() {
@@ -294,10 +321,37 @@ public class Home extends Fragment {
                     String displayResponse = "";
                     com.adybelli.android.Object.Home resource = response.body();
                     if (resource.getBody().getRequired_version() != null) {
-                        if (!resource.getBody().getRequired_version().equals(BuildConfig.VERSION_NAME)) {
-                            showUpdateDialog();
-                            return;
+                        String[] versions=resource.getBody().getRequired_version().split("\\.");
+                        String[] currentVersion=BuildConfig.VERSION_NAME.split("\\.");
+                        // versions= 1.1.0
+//                      // currentV= 1.1
+                        String c_v=BuildConfig.VERSION_NAME;
+                        if(versions.length>0){
+                            if(versions.length==1) {
+                                if (!BuildConfig.VERSION_NAME.equals(versions[0])) {
+                                    showUpdateDialog();
+                                    return;
+                                }
+                            } else if(versions.length==2){
+                                if (!BuildConfig.VERSION_NAME.equals(versions[0] + "." + versions[1])) {
+                                    showUpdateDialog();
+                                    return;
+                                }
+                            } else if(versions.length==3){
+                                if (!BuildConfig.VERSION_NAME.equals(versions[0] + "." + versions[1])) {
+                                    showUpdateDialog();
+                                    if (versions[2].equals("1")) {
+                                        return;
+                                    }
+                                }
+                            }
                         }
+
+//                        if (!resource.getBody().getRequired_version().equals(BuildConfig.VERSION_NAME)) {
+//                            showUpdateDialog();
+//                            return;
+//                        }
+
                     }
                     carouselListObjects = (ArrayList<CarouselListObject>) resource.getBody().getBanners();
                     shopByGenderArrayList = (ArrayList<ShopByGender>) resource.getBody().getGenders();
@@ -305,8 +359,20 @@ public class Home extends Fragment {
                     topSellersArrayList = (ArrayList<TopSold>) resource.getBody().getTop_sold();
                     brands = (ArrayList<Brands>) resource.getBody().getBrands();
                     newArrivalsArrayList = (ArrayList<TopSold>) resource.getBody().getTop_sold();
-                    constants = resource.getBody().getConstants();
 
+                    constants1.clear();
+                    constants2.clear();
+                    if(resource.getBody().getConstants()!=null){
+                        for(Constants constant:resource.getBody().getConstants()){
+                            if(constant.getPage().contains("home_banner")) {
+                                if (constant.getLang_code().equals("tm")) {
+                                    constants1.add(constant);
+                                } else if (constant.getLang_code().equals("ru")) {
+                                    constants2.add(constant);
+                                }
+                            }
+                        }
+                    }
 
                     carousel();
                     shopByGender();
@@ -543,9 +609,9 @@ public class Home extends Fragment {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        params.setMargins((int) getResources().getDimension(R.dimen.padd_10), 0, 0, 0);
-        params.width = (int) getResources().getDimension(R.dimen.indicator_width);
-        params.height = (int) getResources().getDimension(R.dimen.indicator_active_height);
+        params.setMargins((int) context.getResources().getDimension(R.dimen.padd_10), 0, 0, 0);
+        params.width = (int) context.getResources().getDimension(R.dimen.indicator_width);
+        params.height = (int) context.getResources().getDimension(R.dimen.indicator_active_height);
         return params;
     }
 
@@ -554,9 +620,9 @@ public class Home extends Fragment {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        params.setMargins((int) getResources().getDimension(R.dimen.padd_10), 0, 0, 0);
-        params.width = (int) getResources().getDimension(R.dimen.indicator_width);
-        params.height = (int) getResources().getDimension(R.dimen.indicator_passive_height);
+        params.setMargins((int) context.getResources().getDimension(R.dimen.padd_10), 0, 0, 0);
+        params.width = (int) context.getResources().getDimension(R.dimen.indicator_width);
+        params.height = (int) context.getResources().getDimension(R.dimen.indicator_passive_height);
         return params;
     }
 
@@ -592,12 +658,15 @@ public class Home extends Fragment {
         see_all = view.findViewById(R.id.see_all);
         firstImg = view.findViewById(R.id.firstImg);
         secondImg = view.findViewById(R.id.secondImg);
+        seller_rec = view.findViewById(R.id.seller_rec);
+        see_all_seller = view.findViewById(R.id.see_all_seller);
+        seller_title = view.findViewById(R.id.seller_title);
 
 
         kProgressHUD = KProgressHUD.create(context)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setWindowColor(getResources().getColor(R.color.transparentBlack))
-                .setCancellable(false)
+                .setCancellable(true)
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f);
 
@@ -616,6 +685,16 @@ public class Home extends Fragment {
 
                 Utils.hideAdd(allBrands, AllBrands.class.getSimpleName(), getFragmentManager(), R.id.content);
                 MainActivity.firstFragment = allBrands;
+            }
+        });
+
+        see_all_seller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AllStores allStores = new AllStores();
+
+                Utils.hideAdd(allStores, AllStores.class.getSimpleName(), getFragmentManager(), R.id.content);
+                MainActivity.firstFragment = allStores;
             }
         });
     }
@@ -640,10 +719,10 @@ public class Home extends Fragment {
     private void Accessorie() {
 
         if (langugae.equals("tm") || langugae.isEmpty()) {
-            loadHtml(firstImg, constants.get(0).getImg(), constants.get(0).getLink(), constants.get(0).getPage());
+            loadHtml(firstImg, constants1.get(0).getImg(), constants1.get(0).getLink(), constants1.get(0).getPage());
         }
         if (langugae.equals("ru")) {
-            loadHtml(firstImg, constants.get(1).getImg(), constants.get(1).getLink(), constants.get(1).getPage());
+            loadHtml(firstImg, constants2.get(0).getImg(), constants2.get(0).getLink(), constants2.get(0).getPage());
         }
     }
 
@@ -657,10 +736,10 @@ public class Home extends Fragment {
 
     private void coupon() {
         if (langugae.equals("tm") || langugae.isEmpty()) {
-            loadHtml(secondImg, constants.get(2).getImg(), constants.get(2).getLink(), constants.get(2).getPage());
+            loadHtml(secondImg, constants1.get(1).getImg(), constants1.get(1).getLink(), constants1.get(1).getPage());
         }
         if (langugae.equals("ru")) {
-            loadHtml(secondImg, constants.get(3).getImg(), constants.get(3).getLink(), constants.get(3).getPage());
+            loadHtml(secondImg, constants2.get(1).getImg(), constants2.get(1).getLink(), constants2.get(1).getPage());
         }
     }
 
@@ -733,7 +812,7 @@ public class Home extends Fragment {
                         Products.categoriesStr.add(id);
                 }
 
-                products.catName = pageTitle;
+                products.catName = context.getResources().getString(R.string.app_name);
                 products.type = 3;
                 Products.where = "home";
                 Utils.productFragment(products, Products.class.getSimpleName(), getFragmentManager(), R.id.content);

@@ -163,7 +163,7 @@ public class Favourite extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    if (!isLoading)
+                    if (!isLoading) 
                         loadMore();
 
                 }

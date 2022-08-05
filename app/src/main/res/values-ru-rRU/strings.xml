@@ -84,8 +84,8 @@
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="gender">Пол</string>
-    <string name="man">Мужчинам</string>
-    <string name="women">Женщинам</string>
+    <string name="man">Мужчина</string>
+    <string name="women">Женщина</string>
     <string name="user">Пользователь</string>
     <string name="fill"> Заполните всю регистрационную информацию и зарабатываете баллы </string>
     <string name="birthday"> Дата рождения </string>
@@ -93,7 +93,7 @@
     <string name="to_filter"> Сортировать </string>
     <string name="by_gender"> По полу </string>
     <string name="popular_categories"> Популярные категории </string>
-    <string name="top_sellers">Самые продаваемые продукты</string>
+    <string name="top_sellers">Топ продаж</string>
     <string name="brands">Бренды</string>
     <string name="new_arrivals">Новые товары</string>
     <string name="login">Войти</string>
@@ -211,5 +211,9 @@
     <string name="thanks">Спасибо за выбор Adybelli интернет-магазина!</string>
     <string name="no_orders">У вас нет заказов</string>
     <string name="okardaky_ny_anlary_azy">Введите символы выше</string>
+    <string name="refresh">Обновить</string>
+    <string name="to_update">Вам необходимо обновить приложение, чтобы быть в курсе.</string>
+    <string name="update_app">Обновить</string>
+    <string name="seller">Продавец:</string>
 </resources>
 

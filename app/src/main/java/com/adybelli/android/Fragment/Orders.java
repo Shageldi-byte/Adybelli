@@ -131,7 +131,13 @@ public class Orders extends Fragment implements EndlessRecyclerView.Pager {
 
 
                     } else {
-                        list.getAdapter().notifyDataSetChanged();
+                        try{
+                            list.getAdapter().notifyDataSetChanged();
+                        } catch (Exception ex){
+                            ex.printStackTrace();
+                            setOrders();
+                        }
+
                     }
                     if (orders.size() <= 0)
                         showErrorView(R.drawable.not_found, context.getResources().getString(R.string.no_data), getResources().getString(R.string.no_orders), getResources().getString(R.string.continueValue));

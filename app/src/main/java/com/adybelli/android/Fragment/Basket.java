@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -237,11 +238,15 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
 
             @Override
             public void onFailure(Call<GetUserCard> call, Throwable t) {
-                showErrorView(R.drawable.no_connection, context.getResources().getString(R.string.noInternet), getResources().getString(R.string.checkYourInternet), getResources().getString(R.string.continueValue),true);
-                progress.setVisibility(View.GONE);
-                disable.setVisibility(View.GONE);
-                bottomMenu.setVisibility(View.GONE);
-                isLoading = false;
+                try {
+                    showErrorView(R.drawable.no_connection, context.getResources().getString(R.string.noInternet), getResources().getString(R.string.checkYourInternet), getResources().getString(R.string.continueValue), true);
+                    progress.setVisibility(View.GONE);
+                    disable.setVisibility(View.GONE);
+                    bottomMenu.setVisibility(View.GONE);
+                    isLoading = false;
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
         });
     }
@@ -310,6 +315,18 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
         super.onResume();
         if (!isLoading)
             request();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context=context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
     }
 
     private void setBasket() {

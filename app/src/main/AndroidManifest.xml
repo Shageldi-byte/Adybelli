@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.adybelli.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,38 +9,40 @@
     <application
         android:name=".Application.Application"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.CodeVerifyActivity"></activity>
-        <activity android:name=".Activity.SelectGender" />
-        <activity android:name=".Activity.WebViewPage" />
-        <activity android:name=".Activity.ShareProductImage" />
-        <activity android:name=".Activity.SearchPage"/>
         <activity
-            android:name=".Activity.ProductPage"
-            android:screenOrientation="portrait">
-            <intent-filter android:label="https://www.adybelli.com/">
-                <action android:name="com.adybelli.android.Activity.ProductPage" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-
-
+            android:name=".Activity.StorePage"
+            android:exported="true">
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http" android:host="www.adybelli.com" />
-                <data android:scheme="https" android:host="www.adybelli.com" />
-
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="www.adybelliandroid.com/store" />
             </intent-filter>
 
         </activity>
+        <activity android:name=".Activity.CodeVerifyActivity" />
+        <activity android:name=".Activity.SelectGender" />
+        <activity android:name=".Activity.WebViewPage" />
+        <activity android:name=".Activity.ShareProductImage" />
+        <activity android:name=".Activity.SearchPage" />
+        <activity
+            android:name=".Activity.ProductPage"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
@@ -49,9 +52,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.adybelliandroid.com"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.adybelliandroid.com"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
 
-        <service android:name=".Service.MyFirebaseIntanceService">
+        <service android:name=".Service.MyFirebaseIntanceService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

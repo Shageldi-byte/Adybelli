@@ -10,50 +10,40 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adybelli.android.Activity.MainActivity;
 import com.adybelli.android.Adapter.AddressAdapter;
 import com.adybelli.android.Api.APIClient;
 import com.adybelli.android.Api.ApiInterface;
-import com.adybelli.android.Common.Util;
 import com.adybelli.android.Common.Utils;
 import com.adybelli.android.Object.AddressList;
 import com.adybelli.android.Object.CreateOrderResponse;
 import com.adybelli.android.Object.GetUserCardBody;
+import com.adybelli.android.Object.GetUserCardInfo;
 import com.adybelli.android.Post.CreateOrderPost;
 import com.adybelli.android.R;
 import com.adybelli.android.TypeFace.AppFont;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
-import com.google.android.material.textfield.TextInputEditText;
 import com.kaopiz.kprogresshud.KProgressHUD;
-import com.skydoves.powerspinner.DefaultSpinnerAdapter;
 import com.skydoves.powerspinner.PowerSpinnerView;
 
 import java.util.ArrayList;
@@ -305,12 +295,14 @@ public class ProcceedCheckout extends Fragment {
         ImageView close = dialog.findViewById(R.id.close);
         ImageView captchaImage = dialog.findViewById(R.id.captchaImage);
         Button acceptBtn = dialog.findViewById(R.id.acceptBtn);
+        Button refresh = dialog.findViewById(R.id.refresh);
         EditText editText = dialog.findViewById(R.id.editText);
         TextView title2 = dialog.findViewById(R.id.title2);
 
         title2.setTypeface(AppFont.getBoldFont(context));
         editText.setTypeface(AppFont.getBoldFont(context));
         acceptBtn.setTypeface(AppFont.getSemiBoldFont(context));
+        refresh.setTypeface(AppFont.getSemiBoldFont(context));
         try {
             base64 = AddresInCards.bodyResponse.getCaptcha();
 
@@ -323,6 +315,13 @@ public class ProcceedCheckout extends Fragment {
             return;
         }
 
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFromServerBase64(captchaImage);
+            }
+        });
 
 
         acceptBtn.setOnClickListener(new View.OnClickListener() {
@@ -395,6 +394,37 @@ public class ProcceedCheckout extends Fragment {
         dialog.setCancelable(true);
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
         dialog.show();
+    }
+
+    private void getFromServerBase64(ImageView captchaImage) {
+        kProgressHUD.show();
+        apiInterface = APIClient.getClient().create(ApiInterface.class);
+        Call<GetUserCardInfo> call = apiInterface.getUserCartInfo("Bearer " + Utils.getSharedPreference(context, "tkn"), selected_list_ids,Utils.getLanguage(context).isEmpty()?"tm":Utils.getLanguage(context));
+        call.enqueue(new Callback<GetUserCardInfo>() {
+            @Override
+            public void onResponse(Call<GetUserCardInfo> call, Response<GetUserCardInfo> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        AddresInCards.bodyResponse=response.body().getBody();
+                        base64=response.body().getBody().getCaptcha();
+                        byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        captchaImage.setImageBitmap(decodedByte);
+                    } catch (Exception ex){
+                        ex.printStackTrace();
+                        Utils.showCustomToast(Utils.getStringResource(R.string.something_went_wrong, context),R.drawable.ic_baseline_close_24,context,R.drawable.toast_bg_error);
+                        return;
+                    }
+                }
+                kProgressHUD.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserCardInfo> call, Throwable t) {
+                call.cancel();
+                kProgressHUD.dismiss();
+            }
+        });
     }
 
     @Override

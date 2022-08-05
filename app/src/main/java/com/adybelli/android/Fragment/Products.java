@@ -273,7 +273,7 @@ public class Products extends Fragment {
                         list.getAdapter().notifyDataSetChanged();
                     }
                     if (products.size() <= 0)
-                        showErrorView(R.drawable.not_found, context.getResources().getString(R.string.no_data), getResources().getString(R.string.empty), getResources().getString(R.string.continueValue));
+                        showErrorView(R.drawable.not_found, context.getResources().getString(R.string.no_data), context.getResources().getString(R.string.empty), context.getResources().getString(R.string.continueValue));
                     title.setText(catName);
 
                     skeletonScreen.hide();

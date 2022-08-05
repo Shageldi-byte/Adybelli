@@ -63,7 +63,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class Utils {
     public static void hideAdd(Fragment fragment, String tagFragmentName, FragmentManager mFragmentManager, int frame) {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-
         Fragment currentFragment = mFragmentManager.getPrimaryNavigationFragment();
         if (currentFragment != null) {
             try {

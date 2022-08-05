@@ -57,21 +57,39 @@
             android:hint="@string/okardaky_ny_anlary_azy"
             />
 
-        <Button
+        <LinearLayout
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:gravity="center"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:id="@+id/acceptBtn"
-            android:layout_width="wrap_content"
-            android:background="@drawable/orange_hover"
-            android:text="@string/accept"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/acceptBtn"
+                android:layout_width="0dp"
+                android:background="@drawable/orange_hover"
+                android:text="@string/accept"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/refresh"
+                android:layout_width="0dp"
+                android:background="@drawable/orange_hover"
+                android:text="@string/refresh"
+                android:layout_marginStart="12dp"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
     </LinearLayout>
 

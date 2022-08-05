@@ -27,6 +27,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.util.Log;
@@ -136,7 +138,7 @@ public class ProductPage extends AppCompatActivity {
     private SingleProductBody body;
     private SkeletonScreen recentlySkeleton;
     private ImageView shareTextTV;
-    private TextView size_select;
+    private TextView size_select,seller,sellerTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -325,6 +327,8 @@ public class ProductPage extends AppCompatActivity {
     }
 
     private void initComponents() {
+        seller = findViewById(R.id.seller);
+        sellerTitle = findViewById(R.id.sellerTitle);
         mViewPager = findViewById(R.id.viewPagerMain);
         indicator = findViewById(R.id.indicator);
         scroll = findViewById(R.id.scroll);
@@ -499,6 +503,14 @@ public class ProductPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 bottomSheetDialog.show();
+            }
+        });
+
+        seller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,StorePage.class);
+                startActivity(intent);
             }
         });
 
@@ -815,7 +827,8 @@ public class ProductPage extends AppCompatActivity {
         comboTitle.setTypeface(AppFont.getBoldFont(context));
         add_to_card.setTypeface(AppFont.getBoldFont(context));
         size_select.setTypeface(AppFont.getRegularFont(context));
-
+        sellerTitle.setTypeface(AppFont.getRegularFont(context));
+        seller.setTypeface(AppFont.getSemiBoldFont(context));
         oldCost.setPaintFlags(oldCost.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 

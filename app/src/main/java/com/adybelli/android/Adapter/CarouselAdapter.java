@@ -111,9 +111,11 @@ public class CarouselAdapter extends PagerAdapter {
             image = object.getImg_mobile_ru();
         }
 
-        if (object.getLabel().isEmpty() || object.getLabel_ru().isEmpty()
-                || object.getSrc().isEmpty() || object.getSrc().equals("/"))
+        if (object.getLabel().isEmpty() || object.getLabel_ru().isEmpty() || object.getSrc().isEmpty() || object.getSrc().equals("/")){
+
             action.setVisibility(View.GONE);
+            transparent.setVisibility(View.GONE);
+        }
 
         action.setOnClickListener(new View.OnClickListener() {
             @Override

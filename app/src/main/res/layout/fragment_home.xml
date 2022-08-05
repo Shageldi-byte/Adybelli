@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".Fragment.Home">
 
@@ -111,9 +112,10 @@
             <ImageView
                 android:id="@+id/firstImg"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="280dp"
                 android:layout_below="@id/top_sellers_rec"
                 android:layout_marginTop="26dp"
+                android:scaleType="fitXY"
                 />
 
 
@@ -158,9 +160,10 @@
             <ImageView
                 android:id="@+id/secondImg"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="280dp"
                 android:layout_below="@id/brands_rec"
                 android:layout_marginTop="26dp"
+                android:scaleType="fitXY"
                 />
             <WebView
                 android:id="@+id/webView2"
@@ -172,11 +175,47 @@
                 tools:ignore="WebViewLayout" />
 
 
+            <LinearLayout
+                android:layout_below="@id/secondImg"
+                android:id="@+id/sellerCon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/seller_title"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/sellers"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/see_all_seller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/all_brands"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/sellerCon"
+                android:id="@+id/seller_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
             <TextView
                 android:id="@+id/newArrivalsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/secondImg"
+                android:layout_below="@id/seller_rec"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginBottom="12dp"

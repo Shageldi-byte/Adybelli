@@ -33,6 +33,7 @@ import com.adybelli.android.Adapter.MainViewPagerAdapter;
 import com.adybelli.android.Common.Utils;
 import com.adybelli.android.Fragment.Addres;
 import com.adybelli.android.Fragment.AllBrands;
+import com.adybelli.android.Fragment.AllStores;
 import com.adybelli.android.Fragment.Basket;
 import com.adybelli.android.Fragment.ConstantPage;
 import com.adybelli.android.Fragment.Favourite;
@@ -91,15 +92,18 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(context);
 //        db=FirebaseFirestore.getInstance();
         INSTANCE = this;
-        Integer topic = 0;
+        int topic = 0;
         if (!Utils.getSharedPreference(context, "userId").isEmpty()) {
-            topic = Integer.valueOf(Utils.getSharedPreference(context, "userId")) / 1000;
-        }
-        if (topic == 0) {
-            FirebaseMessaging.getInstance().subscribeToTopic("com.adybelli.project");
-        } else {
+            topic = Integer.parseInt(Utils.getSharedPreference(context, "userId")) / 1000;
+            if(topic==0){
+                FirebaseMessaging.getInstance().subscribeToTopic("com.adybelli.project");
+            }
             FirebaseMessaging.getInstance().subscribeToTopic("com.adybelli.project" + topic);
+        } else {
+            FirebaseMessaging.getInstance().subscribeToTopic("com.adybelli.project0");
         }
+
+        Log.e("Topic",topic+"");
 
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -338,6 +342,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         getSupportFragmentManager().getFragments().clear();
+        firstFragment.onDetach();
+        secondFragment.onDetach();
+        thirdFragment.onDetach();
+        fourthFragment.onDetach();
+        fifthFragment.onDetach();
         firstFragment = new Home();
         secondFragment = new Search();
         thirdFragment = new Favourite();
@@ -387,6 +396,14 @@ public class MainActivity extends AppCompatActivity {
             firstFragment = new Home();
         }
 
+
+        AllStores allStores = (AllStores) getSupportFragmentManager().findFragmentByTag(AllStores.class.getSimpleName());
+        if (allStores != null && allStores.isVisible()) {
+            Utils.removeShow(new Home(), Home.class.getSimpleName(), getSupportFragmentManager(), R.id.content);
+            firstFragment = new Home();
+        }
+
+
         ProcceedCheckout procceedCheckout = (ProcceedCheckout) getSupportFragmentManager().findFragmentByTag(ProcceedCheckout.class.getSimpleName());
         if (procceedCheckout != null && procceedCheckout.isVisible()) {
             Utils.removeShow(new Basket(), Basket.class.getSimpleName(), getSupportFragmentManager(), R.id.content);
@@ -432,13 +449,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void setVisiblitybottomNavigationView(Activity activity, int visibilty) {
-        BottomNavigationView bn = activity.findViewById(R.id.bottomNavigationView);
-        bn.setVisibility(visibilty);
+        try {
+            BottomNavigationView bn = activity.findViewById(R.id.bottomNavigationView);
+            bn.setVisibility(visibilty);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public static void setBottomNavigationSelectedItem(Activity activity, int itemId) {
-        BottomNavigationView bn = activity.findViewById(R.id.bottomNavigationView);
-        bn.setSelectedItemId(itemId);
+        try {
+            BottomNavigationView bn = activity.findViewById(R.id.bottomNavigationView);
+            bn.setSelectedItemId(itemId);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public void changeFragment(Fragment fragment, String tagFragmentName) {
